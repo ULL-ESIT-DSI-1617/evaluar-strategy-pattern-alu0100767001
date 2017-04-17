@@ -1,9 +1,10 @@
-'use strict';
+"use strict";
 
 class Shape {
   constructor(figura, options){
     this.figura_=figura;
-    this.options_=options;
+    this.width_=this.options.width;
+    this.height_=this.options.height;
   }
 }
 
@@ -13,11 +14,23 @@ Shape.figuras = { t: 'Triangle',
 };
 
 
+module.exports = {
+  Shape: Shape
+};
+
+
 module.exports = function(shape, options) {
-  let figuras = this.shape;
-  let tipo = figuras.figura;
-  let dimension = figuras.options;
+  var area = 0;
   
-  var clase = eval(figuras[tipo]);
-  new clase(tipo, dimension);
-}
+  let figuras = this.figuras;
+  
+  try {
+    var clase = eval(figuras);
+    var fuente = new clase(this.options);
+    var area = fuente.getArea();  
+  }
+  catch(err){
+    return "'" + figuras + "' es una figura desconocida"
+  }
+  return area;
+};

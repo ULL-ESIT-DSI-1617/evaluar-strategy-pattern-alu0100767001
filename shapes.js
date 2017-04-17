@@ -1,12 +1,13 @@
-'use strict';
+"use strict";
+var Shape = require('./shapesarea.js');
 
 class Triangle extends Shape {
     constructor(figura, options){
         super('Triangle', options)
     }
     
-    getArea(figura, options){
-        let area = .5 * options.width * options.height;
+    getArea(){
+        let area = .5 * this.options.width * this.options.height;
         return area;
     }
 }
@@ -17,8 +18,8 @@ class Square extends Shape {
         super('Square', options)
     }
     
-    getArea(figura, options){
-        let area = Math.pow(options.width, 2);
+    getArea(){
+        let area = Math.pow(this.options.width, 2);
         return area;
     }
 }
@@ -29,8 +30,14 @@ class Rectangle extends Shape {
         super('Rectangle', options)
     }
     
-    getArea(figura, options){
-        let area = options.width * options.height;
+    getArea(){
+        let area = this.options.width * this.options.height;
         return area;
     }
 }
+
+module.exports = {
+    Triangle: Triangle,
+    Square: Square,
+    Rectangle: Rectangle
+};
