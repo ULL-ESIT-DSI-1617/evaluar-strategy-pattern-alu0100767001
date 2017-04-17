@@ -1,22 +1,23 @@
-module.exports = function(shape, options) {
-  var area = 0;
+'use strict';
 
-  switch (shape) {
-    case 'Triangle':
-      area = .5 * options.width * options.height;
-      break;
-
-    case 'Square':
-      area = Math.pow(options.width, 2);
-      break;
-
-    case 'Rectangle':
-      area = options.width * options.height;
-      break;
-
-    default:
-      throw new Error('Invalid shape: ' + shape);
+class Shape {
+  constructor(figura, options){
+    this.figura_=figura;
+    this.options_=options;
   }
+}
 
-  return area;
+Shape.figuras = { t: 'Triangle',
+                  s: 'Square',
+                  r: 'Rectangle'
+};
+
+
+module.exports = function(shape, options) {
+  let figuras = this.shape;
+  let tipo = figuras.figura;
+  let dimension = figuras.options;
+  
+  var clase = eval(figuras[tipo]);
+  new clase(tipo, dimension);
 }
