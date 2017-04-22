@@ -1,5 +1,6 @@
+"use strict";
+
 var getArea = require('./shapesarea.js');
-var claseshijas = require('./shapes.js');
 
 try {
   var t = getArea('Triangle',  { width: 100, height: 100 });

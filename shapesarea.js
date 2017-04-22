@@ -1,36 +1,56 @@
-"use strict";
+/*"use strict";
 
-class Shape {
-  constructor(figura, options){
-    this.figura_=figura;
-    this.width_=this.options.width;
-    this.height_=this.options.height;
-  }
-}
+var Shape = require('./shapes.js').Shape;
+var Triangle = require('./shapes.js').Triangle;
+var Square = require('./shapes.js').Square;
+var Rectangle = require('./shapes.js').Rectangle;
 
-Shape.figuras = { t: 'Triangle',
-                  s: 'Square',
-                  r: 'Rectangle'
+var figuras = { Triangle: 'Triangle',
+                Square: 'Square',
+                Rectangle: 'Rectangle'
 };
-
-
-module.exports = {
-  Shape: Shape
-};
-
 
 module.exports = function(shape, options) {
   var area = 0;
+
+    try {
+      var clase = eval(figuras.shape);
+      var fuente = new clase(options.width, options.height);
+      area = fuente.getArea();  
+      console.log("El área del " + shape + " es: " + area);
+    }
+    catch(err){
+      console.log("'" + shape + "' es una figura desconocida");
+    }
   
-  let figuras = this.figuras;
   
-  try {
-    var clase = eval(figuras);
-    var fuente = new clase(this.options);
-    var area = fuente.getArea();  
-  }
-  catch(err){
-    return "'" + figuras + "' es una figura desconocida"
-  }
-  return area;
+};*/
+
+"use strict";
+
+var Shape = require('./shapes.js').Shape;
+var Triangle = require('./shapes.js').Triangle;
+var Square = require('./shapes.js').Square;
+var Rectangle = require('./shapes.js').Rectangle;
+
+var figuras = {
+	Triangle: 'Triangle',
+	Square: 'Square',
+	Rectangle: 'Rectangle'
+};
+
+module.exports = function(shape, options) {
+	var area = 0;
+
+	try {
+		let clase = eval(figuras[shape]);
+		let nuevo = new clase(options.width, options.height);
+		area = nuevo.getArea();
+		console.log("El área del " + shape + " es: ");
+	}
+	catch(err) {
+		console.log("'" + shape + "' es una figura desconocida");
+	}
+ 
+	return area;
 };
